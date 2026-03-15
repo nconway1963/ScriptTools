@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://sdk-cdn.mypurecloud.com/javascript/228.0.0/purecloud-platform-client-v2.min.js"></script>
+</head>
+
+<body>
+
+<script>
+
+const client = platformClient.ApiClient.instance;
+const conversationsApi = new platformClient.ConversationsApi();
+
+async function sendMessage() {
+
+  const params = new URLSearchParams(window.location.search);
+
+  const conversationId = params.get("conversationId");
+  const communicationId = params.get("communicationId");
+  const textBody = params.get("text");
+
+  try {
+
+    await conversationsApi.postConversationsMessagesCommunicationMessages(
+      conversationId,
+      communicationId,
+      { textBody }
+    );
+
+  } catch(err) {
+    console.error(err);
+  }
+
+  window.close();
+}
+
+sendMessage();
+
+</script>
+
+</body>
+</html>
