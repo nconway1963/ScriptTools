@@ -9,6 +9,10 @@
 <script>
 
 const client = platformClient.ApiClient.instance;
+
+// Initialize with the environment the agent is logged into
+client.setEnvironment(platformClient.PureCloudRegionHosts.us_east_1);
+
 const conversationsApi = new platformClient.ConversationsApi();
 
 async function sendMessage() {
