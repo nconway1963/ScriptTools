@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://sdk-cdn.mypurecloud.com/javascript/228.0.0/purecloud-platform-client-v2.min.js"></script>
+<script src="https://sdk-cdn.mypurecloud.com/javascript/platform-client-v2.min.js"></script>
 </head>
 
 <body>
@@ -10,7 +10,7 @@
 
 const client = platformClient.ApiClient.instance;
 
-// Use the region your org runs in
+// set the region
 client.setEnvironment("mypurecloud.com");
 
 async function sendMessage() {
@@ -36,6 +36,7 @@ async function sendMessage() {
   } catch(err) {
     console.error("Message send failed:", err);
   }
+
 }
 
 sendMessage();
