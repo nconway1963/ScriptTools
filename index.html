@@ -10,10 +10,8 @@
 
 const client = platformClient.ApiClient.instance;
 
-// Initialize with the environment the agent is logged into
-client.setEnvironment(platformClient.PureCloudRegionHosts.us_east_1);
-
-const conversationsApi = new platformClient.ConversationsApi();
+// Use the region your org runs in
+client.setEnvironment("mypurecloud.com");
 
 async function sendMessage() {
 
@@ -23,6 +21,8 @@ async function sendMessage() {
   const communicationId = params.get("communicationId");
   const textBody = params.get("text");
 
+  const conversationsApi = new platformClient.ConversationsApi();
+
   try {
 
     await conversationsApi.postConversationsMessagesCommunicationMessages(
@@ -31,11 +31,11 @@ async function sendMessage() {
       { textBody }
     );
 
-  } catch(err) {
-    console.error(err);
-  }
+    window.close();
 
-  window.close();
+  } catch(err) {
+    console.error("Message send failed:", err);
+  }
 }
 
 sendMessage();
